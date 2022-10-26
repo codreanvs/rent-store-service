@@ -1,0 +1,30 @@
+buildscript {
+    dependencies {
+        classpath rootProject.files("libraries/ojdbc8-19.3.jar")
+    }
+}
+
+plugins {
+    id "org.flywaydb.flyway" version "9.5.1"
+}
+
+flyway {
+    user = "sys as sysdba"
+    password = "secret"
+    driver = "oracle.jdbc.OracleDriver"
+    url = "jdbc:oracle:thin:@//localhost:1521/RENT_STORE"
+    sqlMigrationPrefix = "V"
+    sqlMigrationSeparator = "__"
+    placeholderPrefix = "#["
+    placeholderSuffix = "]"
+    placeholderReplacement = true
+    schemas = ["RENT_OWNER", "RENT_USER"]
+    placeholders = [
+            "schema_name" : flyway.schemas[0],
+            "schema_user" : flyway.schemas[1],
+            "sequence_max_value" : "9223372036854775807"
+    ]
+    locations = [
+            "filesystem:${project.file("sql/oracle")}"
+    ]
+}

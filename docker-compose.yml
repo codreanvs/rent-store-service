@@ -1,0 +1,8 @@
+version: '3.7'
+
+services:
+  rent-store-service-db:
+    container_name: rent-store-service-db
+    image: 'gendev12/oracle-19c-quick'
+    ports:
+      - '1521:1521'

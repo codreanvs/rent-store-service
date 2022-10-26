@@ -1,0 +1,4 @@
+rootProject.name = 'rent-store-service'
+
+include 'database'
+include 'rent-store-service-core'

@@ -1,0 +1,11 @@
+def build = System.env["BUILD_NUMBER"]
+version = rootProject.file("project-version.txt").text.trim()
+if (build) {
+    version += ".${build}"
+} else {
+    version += "-SNAPSHOT"
+}
+
+allprojects { project ->
+    project.version = rootProject.version
+}
